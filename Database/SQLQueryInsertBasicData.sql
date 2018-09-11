@@ -43,7 +43,7 @@ GO
 CREATE TABLE [dbo].[check_out](
 	[id] [int] NOT NULL,
 	[book_id] [int] NOT NULL,
-	[user_id] [int] NOT NULL,
+	[user_id] [nvarchar](128) NOT NULL,
 	[due_date] [date] NOT NULL,
  CONSTRAINT [PK_check_out] PRIMARY KEY CLUSTERED 
 (
@@ -60,25 +60,12 @@ ALTER TABLE [dbo].[check_out] CHECK CONSTRAINT [FK_check_out_book]
 GO
 
 ALTER TABLE [dbo].[check_out]  WITH CHECK ADD  CONSTRAINT [FK_check_out_user] FOREIGN KEY([user_id])
-REFERENCES [dbo].[user] ([id])
+REFERENCES [dbo].[AspNetUsers] ([Id])
 GO
 
 ALTER TABLE [dbo].[check_out] CHECK CONSTRAINT [FK_check_out_user]
 GO
 
-
-CREATE TABLE [dbo].[user](
-	[id] [int] NOT NULL,
-	[user_name] [nvarchar](50) NOT NULL,
-	[hashed_password] [nvarchar](50) NOT NULL,
-	[first_name] [nvarchar](50) NOT NULL,
-	[last_name] [nvarchar](50) NOT NULL,
- CONSTRAINT [PK_user] PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
 
 
 INSERT INTO [Bookish].[dbo].[book] VALUES (1, 'Who is Pele?', 'JAMES BUCKLEY, JR.', '9780395419'),
