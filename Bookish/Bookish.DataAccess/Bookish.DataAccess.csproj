@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataTypes\Book.cs" />
+    <Compile Include="Entities\Book.cs" />
     <Compile Include="BooksData.cs" />
     <Compile Include="Interfaces\IDbBooks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

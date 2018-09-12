@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Books List";
+}
+
+<h2>@ViewBag.Title:</h2>
+
+<ul>
+    @foreach (var item in ViewBag.Books)
+    {
+        <li>
+            @Html.Raw(item.ToString())
+        </li>
+    }
+</ul>
+
+<input type="button" value="Add a new book" class="btn btn-default" onclick="location.href='@Url.Action("AddBook", "Home")'" />

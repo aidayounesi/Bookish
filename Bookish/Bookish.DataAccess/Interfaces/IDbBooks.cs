@@ -8,7 +8,7 @@ namespace Bookish.DataAccess
 {
     public interface IDbBooks
     {
-        List<Book> GetAllBooks();
+        List<Book> GetAllBooks(bool orderAlphabetically);
         bool InsertBook(string title, string authors, string isbn);
     }
 }

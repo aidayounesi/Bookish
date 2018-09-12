@@ -9,20 +9,22 @@ namespace Bookish.DataAccess
 {
     public class BooksData : IDbBooks
     {
-        public List<Book> GetAllBooks()
+        public List<Book> GetAllBooks(bool orderAlphabetically = false)
         {
             using (IDbConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
-                string sqlString = "SELECT * FROM Book;";
+                string sqlString = "SELECT * FROM Book";
+                if (orderAlphabetically)
+                    sqlString += " ORDER BY title";
                 return (List<Book>)connection.Query<Book>(sqlString);
             }
         }
 
-        public bool InsertBook(string title, string authors, string isbn)
+        public bool InsertBook(string title="A", string authors="B", string isbn="1")
         {
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
-                string sqlString = "INSERT INTO Book VALUES (title,authors,isbn) VALUES (@title,@authors,@isbn);";
+                string sqlString = @"INSERT INTO Book VALUES (@title,@authors,@isbn)";
                 using (SqlCommand command = new SqlCommand(sqlString, connection))
                 {
                     command.Parameters.AddWithValue("@title", title);

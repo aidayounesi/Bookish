@@ -12,5 +12,10 @@ namespace Bookish.DataAccess
         public string title { get; set; }
         public string authors { get; set; }
         public string isbn { get; set; }
+
+        public override string ToString()
+        {
+            return title + " by " + authors + ", ISBN: " + isbn;
+        }
     }
 }
